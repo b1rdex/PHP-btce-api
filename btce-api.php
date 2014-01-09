@@ -19,6 +19,7 @@ class BTCeAPI {
     const PAIR_LTC_USD = 'ltc_usd';
     const PAIR_LTC_RUR = 'ltc_rur';
     const PAIR_LTC_EUR = 'ltc_eur';
+    const PAIR_LTC_BTC = 'ltc_btc';
 
     const PAIR_NMC_BTC = 'nmc_btc';
     const PAIR_NMC_USD = 'nmc_usd';
