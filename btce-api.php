@@ -56,8 +56,7 @@ class BTCeAPI {
     
     /**
      * Get the noonce
-     * @global type $sql_conx
-     * @return type 
+     * @return array
      */
     protected function getnoonce() {
         $this->noonce++;
@@ -66,10 +65,10 @@ class BTCeAPI {
     
     /**
      * Call the API
-     * @staticvar null $ch
-     * @param type $method
-     * @param type $req
-     * @return type
+     *
+     * @param string $method
+     * @param array $req
+     * @return array
      * @throws Exception 
      */
     public function apiQuery($method, $req = array()) {
@@ -153,14 +152,17 @@ class BTCeAPI {
         $json = json_decode($feed, true);
         return $json;
     }
-    
+
     /**
      * Place an order
-     * @param type $amount
-     * @param type $pair
-     * @param type $direction
-     * @param type $price
-     * @return type 
+     *
+     * @param float  $amount
+     * @param string $pair
+     * @param string $direction
+     * @param float  $price
+     *
+     * @throws BTCeAPIInvalidParameterException
+     * @return array
      */
     public function makeOrder($amount, $pair, $direction, $price) {
         if($direction == self::DIRECTION_BUY || $direction == self::DIRECTION_SELL) {
@@ -269,8 +271,8 @@ class BTCeAPI {
 
     /**
      * Check an order that is complete (non-active)
-     * @param type $orderID
-     * @return type
+     * @param int $orderID
+     * @return array
      * @throws Exception 
      */
     public function checkPastOrder($orderID) {
@@ -282,9 +284,9 @@ class BTCeAPI {
                     'active' => 0
                 ));
         if($data['success'] == "0") {
-            throw new BTCeAPIErrorException("Error: ".$data['error']);
+            throw new BTCeAPIErrorException("Error: " . $data['error']);
         } else {
-            return($data);
+            return $data;
         }
     }
     
@@ -334,4 +336,3 @@ class BTCeAPIFailureException extends BTCeAPIException {}
 class BTCeAPIInvalidJSONException extends BTCeAPIException {}
 class BTCeAPIErrorException extends BTCeAPIException {}
 class BTCeAPIInvalidParameterException extends BTCeAPIException {}
-?>
