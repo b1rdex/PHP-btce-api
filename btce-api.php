@@ -32,6 +32,7 @@ class BTCeAPI {
 
     const PAIR_TRC_BTC = 'trc_btc';
     const PAIR_PPC_BTC = 'ppc_btc';
+    const PAIR_PPC_USD = 'ppc_usd';
     const PAIR_FTC_BTC = 'ftc_btc';
     const PAIR_XPM_BTC = 'xpm_btc';
 
